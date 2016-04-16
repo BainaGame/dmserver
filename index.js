@@ -2,6 +2,11 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var bodyParser = require("body-parser");
+var log4js = require("log4js");
+
+log4js.configure("log4js.json");
+
+var logger = log4js.getLogger("logInfo");
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -31,6 +36,10 @@ app.get('/sendmsg', function (req, res) {
     var msg = req.body.msg;
     io.emit('dm', msg);
     res.send("success");
+})
+
+app.post("/sendmsg", function (req,res){
+    
 })
 
 io.on('connection', function (socket) {
