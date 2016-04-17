@@ -18,8 +18,8 @@ app.use(function(req,res,next){
     next();
 })
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+app.get('/input.html', function (req, res) {
+    res.sendFile(__dirname + '/input.html');
 });
 
 app.get('/client.html', function (req, res) {
@@ -38,8 +38,8 @@ app.get('/sendmsg', function (req, res) {
     res.send("success");
 })
 
-app.post("/sendmsg", function (req,res){
-    
+app.post("/sendwx", function (req,res){
+
 })
 
 io.on('connection', function (socket) {
@@ -48,6 +48,6 @@ io.on('connection', function (socket) {
     });
 });
 
-http.listen(4000, function () {
-    console.log('listening on *:4000');
+http.listen(80, function () {
+    console.log('listening on *:80');
 });
