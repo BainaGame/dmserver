@@ -5,6 +5,17 @@ var bodyParser = require("body-parser");
 var log4js = require("log4js");
 var wechat = require("wechat");
 
+var numlist = {
+    1:"勇哥真帅!",
+    2:"再创佳绩",
+    3:"老虎机",
+    4:"炸金花威武",
+    5:"斗牛威武",
+    6:"麻将威武",
+    7:"德州威武",
+    8:"大家加油!"
+}
+
 log4js.configure("log4js.json");
 
 var logger = log4js.getLogger("logInfo");
@@ -41,9 +52,24 @@ app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next)
     //     Content: '你好',
     //     MsgId: '6274733674086114390' }
 
-    logger.info(message);
-    io.emit("dm", message.Content);
-    res.reply('发送成功!');
+    logger.info(message.Content);
+
+    var showText = message.Content;
+
+    for(var i=1;i<=numlist.length;i++){
+        if (message.Content == i.toString()){
+            showText = numlist[i];
+            break;
+        }
+    }
+
+    io.emit("dm", showText);
+
+    var result = "";
+    for(var i=1;i<=numlist.length;i++){
+        result += "发送[+"+i+"+]以弹出'"+numlist[i]+"'\n";
+    }
+    res.reply(result);
 
 })));
 
