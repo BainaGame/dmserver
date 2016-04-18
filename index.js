@@ -40,9 +40,10 @@ app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next)
     //     MsgType: 'text',
     //     Content: '你好',
     //     MsgId: '6274733674086114390' }
-    
+
+    console.log(message);
     io.emit("dm",message.content);
-    res.send("发送成功!");
+    res.reply('发送成功!');
 
 })));
 
