@@ -42,12 +42,20 @@ app.post("/sendwx", function (req,res){
 
 })
 
+app.post("/*",function (req,res){
+    console.log(req)
+})
+
+app.get("/*",function (req,res){
+    console.log(req.url)
+})
+
 io.on('connection', function (socket) {
     socket.on('dm', function (msg) {
         io.emit('dm', msg);
     });
 });
 
-http.listen(80, function () {
+http.listen(8000, function () {
     console.log('listening on *:80');
 });
