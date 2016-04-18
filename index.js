@@ -31,6 +31,11 @@ app.get('/socket.io-1.2.0.js', function (req, res) {
     res.sendFile(__dirname + '/socket.io-1.2.0.js');
 });
 
+///baina?signature=64fae32d0580de84aa45f9aeaca6f1025f56eb93&echostr=8145551735383739278&timestamp=1460947078&nonce=441269505
+app.get("/baina", function (req,res){
+    return true
+})
+
 app.get('/sendmsg', function (req, res) {
 
     var msg = req.body.msg;
