@@ -34,7 +34,16 @@ app.get('/socket.io-1.2.0.js', function (req, res) {
 
 app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next) {
 
-    console.log(message);
+    // { ToUserName: 'gh_6d72c20eb836',
+    //     FromUserName: 'o-8wiwkwWxP4KQamySqMdlKEP7NE',
+    //     CreateTime: '1460950280',
+    //     MsgType: 'text',
+    //     Content: '你好',
+    //     MsgId: '6274733674086114390' }
+    
+    io.emit("dm",message.content);
+    res.send("发送成功!");
+
 })));
 
 app.get('/sendmsg', function (req, res) {
