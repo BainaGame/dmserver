@@ -12,8 +12,8 @@ var logger = log4js.getLogger("logInfo");
 app.use(bodyParser.urlencoded({extended: false}));
 
 //get/post 访问方法一样
-app.use(function(req,res,next){
-    if(req.method == "GET"){
+app.use(function (req, res, next) {
+    if (req.method == "GET") {
         req.body = req.query;
     }
     next();
@@ -32,16 +32,10 @@ app.get('/socket.io-1.2.0.js', function (req, res) {
     res.sendFile(__dirname + '/socket.io-1.2.0.js');
 });
 
-app.use('/baina', wechat('baina', function (req, res, next) {
+app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next) {
 
-    var message = req.weixin;
     console.log(message);
-
-    if((message.MsgType == 'event') && (message.Event == 'subscribe'))
-    {
-        res.reply("感谢你的关注!");
-    }
-}));
+})));
 
 app.get('/sendmsg', function (req, res) {
 
@@ -50,15 +44,15 @@ app.get('/sendmsg', function (req, res) {
     res.send("success");
 })
 
-app.post("/sendwx", function (req,res){
+app.post("/sendwx", function (req, res) {
 
 })
 
-app.post("/*",function (req,res){
+app.post("/*", function (req, res) {
     console.log(req)
 })
 
-app.get("/*",function (req,res){
+app.get("/*", function (req, res) {
     console.log(req.url)
 })
 
