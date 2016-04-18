@@ -3,6 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var bodyParser = require("body-parser");
 var log4js = require("log4js");
+var wechat = require("wechat");
 
 log4js.configure("log4js.json");
 
