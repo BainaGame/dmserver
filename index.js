@@ -42,7 +42,7 @@ app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next)
     //     MsgId: '6274733674086114390' }
 
     console.log(message);
-    io.emit("dm",message.content);
+    io.emit("dm", message.Content);
     res.reply('发送成功!');
 
 })));
