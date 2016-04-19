@@ -19,7 +19,7 @@ var numlist = {
 var shortText = "";
 
 for(var i in numlist){
-    shortText += "发送["+i+"]以弹出'"+numlist[i.toString()]+"'\n";
+    shortText += "发送["+i+"] "+numlist[i.toString()]+"\n";
 }
 
 console.log(shortText);
