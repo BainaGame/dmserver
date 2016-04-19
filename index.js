@@ -18,9 +18,11 @@ var numlist = {
 
 var shortText = "";
 
-for(var i=1;i<=numlist.length;i++){
-    shortText += "发送[+"+i+"+]以弹出'"+numlist[i.toString()]+"'\n";
+for(var i in numlist){
+    shortText += "发送["+i+"]以弹出'"+numlist[i.toString()]+"'\n";
 }
+
+console.log(shortText);
 
 log4js.configure("log4js.json");
 
