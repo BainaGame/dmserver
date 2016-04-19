@@ -16,11 +16,11 @@ var numlist = {
     "8":"大家加油!"
 }
 
-var shortText = "发送1以弹出'勇哥真帅'";
+var shortText = "";
 
-// for(var i=1;i<=numlist.length;i++){
-//     shortText += "发送[+"+i+"+]以弹出'"+numlist[i]+"'\n";
-// }
+for(var i=1;i<=numlist.length;i++){
+    shortText += "发送[+"+i+"+]以弹出'"+numlist[i.toString()]+"'\n";
+}
 
 log4js.configure("log4js.json");
 
@@ -68,7 +68,7 @@ app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next)
     }
 
     io.emit("dm", showText);
-    
+
     res.reply(shortText);
 
 })));
