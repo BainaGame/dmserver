@@ -6,15 +6,21 @@ var log4js = require("log4js");
 var wechat = require("wechat");
 
 var numlist = {
-    1:"勇哥真帅!",
-    2:"再创佳绩",
-    3:"老虎机",
-    4:"炸金花威武",
-    5:"斗牛威武",
-    6:"麻将威武",
-    7:"德州威武",
-    8:"大家加油!"
+    "1":"勇哥真帅!",
+    "2":"再创佳绩",
+    "3":"老虎机",
+    "4":"炸金花威武",
+    "5":"斗牛威武",
+    "6":"麻将威武",
+    "7":"德州威武",
+    "8":"大家加油!"
 }
+
+var shortText = "发送1以弹出'勇哥真帅'";
+
+// for(var i=1;i<=numlist.length;i++){
+//     shortText += "发送[+"+i+"+]以弹出'"+numlist[i]+"'\n";
+// }
 
 log4js.configure("log4js.json");
 
@@ -55,21 +61,15 @@ app.use('/baina', wechat("baina", wechat.text(function (message, req, res, next)
     logger.info(message.Content);
 
     var showText = message.Content;
+    var longText = numlist[showText];
 
-    for(var i=1;i<=numlist.length;i++){
-        if (message.Content == i.toString()){
-            showText = numlist[i];
-            break;
-        }
+    if (longText){
+        showText = longText;
     }
 
     io.emit("dm", showText);
-
-    var result = "";
-    for(var i=1;i<=numlist.length;i++){
-        result += "发送[+"+i+"+]以弹出'"+numlist[i]+"'\n";
-    }
-    res.reply(result);
+    
+    res.reply(shortText);
 
 })));
 
